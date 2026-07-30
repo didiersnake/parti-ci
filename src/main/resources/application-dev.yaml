@@ -23,7 +23,7 @@ server:
   port: 8888
 
 minio:
-  endpoint: http://156.67.27.35:9000
+  endpoint: https://s3.didierdjakoua.site
   access-key: admin
   secret-key: my-secret-pw
   bucketName: part-ci
