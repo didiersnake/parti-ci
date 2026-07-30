@@ -18,7 +18,7 @@ services:
       - "traefik.http.routers.planora_backend.rule=Host(`planorabackend.didierdjakoua.site`)"
       - "traefik.http.routers.planora_backend.entrypoints=websecure"
       - "traefik.http.routers.planora_backend.tls=true"
-      - "traefik.http.services.planora_backend.loadbalancer.server.port=8888"
+      - "traefik.http.services.planora_backend.loadbalancer.server.port=8484"
 
 networks:
   planora_network:
