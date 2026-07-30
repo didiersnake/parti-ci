@@ -6,23 +6,24 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-#    properties:
-#      hibernate:
-#        jdbc:
-#          lob:
-#            non_contextual_creation: true
-#        dialect: org.hibernate.dialect.PostgreSQLDialect
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
   datasource:
-    url: jdbc:postgresql://156.67.27.35:4321/parti_ci
+    url: jdbc:postgresql://156.67.27.35:4322/nexora
     username: root
     password: my-secret-pw
     driver-class-name: org.postgresql.Driver
 
 server:
-  port: 8585
+  port: 8484
 
 minio:
   endpoint: http://156.67.27.35:9000
   access-key: admin
   secret-key: my-secret-pw
-  bucketName: parti-ci
+  bucketName: part-ci

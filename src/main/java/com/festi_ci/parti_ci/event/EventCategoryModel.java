@@ -12,5 +12,8 @@ public class EventCategoryModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String categoryCode;
     private String name;
+    private String description;
+    private String icon;
 }

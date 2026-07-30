@@ -1,5 +1,5 @@
 spring:
   application:
-    name: parti-ci
+    name: nexora
   profiles:
     active: dev

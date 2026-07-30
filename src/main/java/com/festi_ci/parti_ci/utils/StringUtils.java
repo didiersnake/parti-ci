@@ -16,12 +16,12 @@ public class StringUtils {
     }
 
     public static String generateEventKey() {
-        String chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // No I,1,O,0
+        String chars = "ABHSCIQKZ023456789"; // No I,1,O,0
         SecureRandom random = new SecureRandom();
-        StringBuilder sb = new StringBuilder(6);
-        for (int i = 0; i < 6; i++) {
+        StringBuilder sb = new StringBuilder(4);
+        for (int i = 0; i < 4; i++) {
             sb.append(chars.charAt(random.nextInt(chars.length())));
         }
-        return "evt-" + sb.toString(); // e.g., "evt-K7X3M9"
+        return "evt" + sb.toString(); // e.g., "evtK79F"
     }
 }

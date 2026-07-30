@@ -1,10 +1,9 @@
 package com.festi_ci.parti_ci.event;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +11,7 @@ import java.util.Optional;
 @Slf4j
 @RestController
 @RequestMapping("/api/event-categories")
+@CrossOrigin("*")
 public class EventCategoryController {
 
     private final EventCategoryRepository eventCategoryRepository;
@@ -21,8 +21,8 @@ public class EventCategoryController {
     }
 
     @GetMapping
-    public List<EventCategoryModel> getAllEventCategories() {
-        return eventCategoryRepository.findAll();
+    public ResponseEntity<List<EventCategoryModel>> getAllEventCategories() {
+        return ResponseEntity.ok().body(eventCategoryRepository.findAll());
     }
 
     @GetMapping("/{id}")

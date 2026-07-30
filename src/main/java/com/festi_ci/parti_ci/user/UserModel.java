@@ -1,6 +1,7 @@
 package com.festi_ci.parti_ci.user;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.*;
 
 @Entity @Table(name = "users")
@@ -12,6 +13,8 @@ public class UserModel {
     @Column(nullable = false) private String userName;
     private String keycloakId;
     @Column(nullable = false) private String phoneNumber;
-    private String role = "Guest";
+    @Email(message = "Email is not valid")
+    @Column(unique = true, nullable = false)
+    private String email;
 
 }

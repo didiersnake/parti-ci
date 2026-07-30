@@ -1,12 +1,15 @@
 package com.festi_ci.parti_ci.event;
 
-import com.festi_ci.parti_ci.enums.FeeType;
-import com.festi_ci.parti_ci.enums.PrivacyStatus;
+import com.festi_ci.parti_ci.user.GuestModel;
+import com.festi_ci.parti_ci.utils.enums.FeeType;
+import com.festi_ci.parti_ci.utils.enums.PrivacyStatus;
+import com.festi_ci.parti_ci.location.LocationModel;
 import com.festi_ci.parti_ci.user.UserModel;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity @Table(name = "events")
 @NoArgsConstructor @Data @AllArgsConstructor @Builder
@@ -15,18 +18,29 @@ public class EventModel {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @JoinColumn(name = "user_id", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY) private UserModel organizerId;
+    @ManyToOne(fetch = FetchType.LAZY) private UserModel organizer;
     @JoinColumn(name = "event_category_id", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY) private EventCategoryModel eventCategoryId;
+    @ManyToOne(fetch = FetchType.LAZY) private EventCategoryModel eventCategory;
     @Column(nullable = false) private String title;
-    @Column( nullable = false) private String templateCoverUUID;
+    @Column(nullable = false) private String host;
+    @Column(nullable = false) private String description;
+    @Column( nullable = false) private String templatePath;
     // Event basic details
-    @Column(name = "privacy_status", nullable = false)
-    private PrivacyStatus privacyStatus = PrivacyStatus.Public;
+    private Boolean isPrivate = false;
+
     @Column(nullable = false) private LocalDateTime startAt;
-    private FeeType feeType = FeeType.Free;
+    @Column(nullable = false) private String startTime;
+    private LocalDateTime endsAt;
+    private FeeType monetizationType = FeeType.Free;
+    @Column(nullable = false) private String locationName;
+    @JoinColumn(name = "place_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY) private LocationModel location;
     private String dressCode;
-    private int maxCapacity;
+    private Boolean maxCapacityEnabled = false;
+    private Boolean waitListEnabled = false;
+    private List<GuestModel> waitList;
+    private List<GuestModel> guestList;
+    private Integer maxCapacity;
     // Slug link to the event page
     @Column(nullable = false, unique = true) private String slug;
 

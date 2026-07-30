@@ -1,0 +1,27 @@
+services:
+  planora_backend:
+    build: .
+    container_name: "planora_backend"
+    restart: unless-stopped
+    networks:
+      - planora_network
+      - traefik_proxy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://156.67.27.35:4322/nexora
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=my-secret-pw
+      - SPRING_PROFILES_ACTIVE=dev
+    #      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik_proxy"
+      - "traefik.http.routers.planora_backend.rule=Host(`planorabackend.didierdjakoua.site`)"
+      - "traefik.http.routers.planora_backend.entrypoints=websecure"
+      - "traefik.http.routers.planora_backend.tls=true"
+      - "traefik.http.services.planora_backend.loadbalancer.server.port=8888"
+
+networks:
+  planora_network:
+    external: true
+  traefik_proxy:
+    external: true
