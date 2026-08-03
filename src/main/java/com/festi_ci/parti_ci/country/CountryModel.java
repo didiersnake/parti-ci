@@ -17,5 +17,7 @@ public class CountryModel {
     @Column(nullable = false) private String name;
     @Column(nullable = false) private String code;
     private String flag;
-    @Column(nullable = false) private String currency;
+    @Column(nullable = false) private String currencyCode;
+    private String currencySymbol;
+    private String currencyName;
 }
